@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title></title>
+</head>
+<body>
+
+  <button id="click_btn">Click me</button>
+  <span id="counting"></span>
+
+</body>
+  <script> 
+    let count = 0;
+    const btn = document.querySelector("#click_btn");
+    const span = document.querySelector("#counting")
+    
+    
+    function handleClick(){
+      console.log("clicked!");
+      count++;
+      console.log(count);
+      span.innerText = count;
+    }
+    
+    btn.addEventListener("click", handleClick);
+  </script>
+</html>
