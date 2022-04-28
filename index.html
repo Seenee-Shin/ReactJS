@@ -6,9 +6,19 @@
   <title></title>
 </head>
 <body>
-  
+  <!-- 리액트는 html을 직접 작성하지 않아요! -->
+  <div id="root"></div>
 </body>
-  <script crossorigin src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
-  <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>  
-  <script></script>
+  <script crossorigin src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>  
+  <script>
+    //hard way
+    const root = document.querySelector("#root");
+    // React.createElement("요소",{property}, "content");
+    const span = React.createElement("span",{id: "spaan", style:{color:"blue"}},"Hello World!");
+
+    //ReactDOM.render(요소,저장위치) = 화면에 보여주기 위해 랜더 
+    ReactDOM.render(span,root);
+
+  </script>
 </html>
