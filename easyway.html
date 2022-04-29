@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title></title>
+</head>
+<body>
+  <!-- 리액트는 html을 직접 작성하지 않아요! -->
+  <div id="root"></div>
+</body>
+  <script crossorigin src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+  <!-- JSX : 자바스크립틑 확장 언어 -->  
+  <script  src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script></script>
+  
+  
+  <script type="text/babel"> //jsx를 이해시키기위해 type적어주기
+    //hard way
+    const root = document.querySelector("#root");
+
+    //tip! arrow함수를 쓸때 왜 ()쓰나요? {}쓰면 안돼나요?
+    // => ()는 리턴까지 {}쓰면 {return ~~}으로 써주어야함 ()=>{return ~~}
+
+    //html문법으로 요소 만들기
+    const Title = ()=> ( 
+      <h3 id="title" onClick={()=>console.log("title")}> 
+        Title
+      </h3>);
+    
+    const Btn = ()=>(
+    <button onClick={()=>console.log("btn clicked")}> 
+      Click me! 
+    </button>);
+
+    //생성요소 div에 추가하기 
+    //추가를 위해 요소를 함수로 만들어주기 = 컴포넌트 만들어주기
+    //주의!!! : 컴포넌트의 첫글자는 반드시 대문자! 소문자는 html로 인식
+    const Container = ()=>(
+      <div> 
+        <Title />
+        <Btn /> 
+      </div>
+    );
+
+    ReactDOM.render(<Container/>,root);
+
+  </script>
+</html>

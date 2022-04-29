@@ -14,11 +14,31 @@
   <script>
     //hard way
     const root = document.querySelector("#root");
+    //react의 가장 큰 장점 : interativity
+
     // React.createElement("요소",{property}, "content");
-    const span = React.createElement("span",{id: "spaan", style:{color:"blue"}},"Hello World!");
+    //property작성 칸에 eventlistener도 추가해 줄 수 있다. 변수 지정과 함께 함수도 지정 가능 
+    //property의 구분은 쉼표로 해준다
+    const h3 = React.createElement(
+      "h3",
+      {
+        onMouseEnter:()=> console.log("mouse enter"),
+      },
+      "Hello World!");
+
+    const btn = React.createElement(
+      "button",
+      {
+        onClick:()=> console.log("i'm clicked"),
+        style:{color:"blue", backgroundColor:"white"},
+      },
+      "Click me");
 
     //ReactDOM.render(요소,저장위치) = 화면에 보여주기 위해 랜더 
-    ReactDOM.render(span,root);
+    //const container = React.createElement("div", null, [span,btn]) array를 추가해 div안에 태그 넣어주기
+    const container = React.createElement("div", null, [h3,btn])
+
+    ReactDOM.render(container,root);
 
   </script>
 </html>
