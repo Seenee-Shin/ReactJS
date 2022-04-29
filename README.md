@@ -2,7 +2,7 @@
 
 ## Day1. 2021.04.28
 
-### What is the deifference between Reactjs and vanliaJS!
+### What is the difference between Reactjs and vanliaJS!
 - 자바스크립트는 html 생성 후 eventlistner를 만들어 줍니다. 
 하지만 ReactJS의 경우 html을 생성할 필요 없이 변수를 만들어 바로 eventListner를 추가해 줄 수 있습니다. 
 #### React.JS
@@ -43,18 +43,20 @@ btn.addEventListener("click", handleClick)
 ### How to use JSX?
 - 그거아시나요? 어제 실무자들은 어제 배웠던 방법으로 요소를 생성하지 않습니다!
 - JSX를 통해 개발자처럼 요소를 생성해봅시다. JSX가 뭐냐구요? 
+<br/>
 
 #### JSX는 JavaScript를 확장한 문법입니다.
 아래와 같이 변수 선언과 동시에 hmtl문법을 같이 써버립니다.
 ```jsx
 const element = <h1>Hello, world!</h1>;
 ```
-
-JSX를 사용하여 컴포넌트를 만들어 주면 html안에 컴포넌트를 추가 할 수 있습니다
+<br/>
 
 #### 컴포넌트 만들기
-방법은 간단합니다! 변수를 함수로 바꾸어 주면 됩니다!
-✍ 컴포넌트의 첫글자는 꼭 대문자로 지정해줍니다. 안그러면 hmtl로 인식해버려요!
+JSX를 사용하여 컴포넌트를 만들어 주면 html안에 컴포넌트를 추가 할 수 있습니다.</br>
+방법은 간단합니다! 변수를 함수로 바꾸어 주면 됩니다!<br/>
+#### ✍ 컴포넌트의 첫글자는 꼭 대문자로 지정해줍니다. 안그러면 hmtl로 인식해버려요!
+
 ```jsx
     const Title = ()=> ( 
       <h3 id="title" onClick={()=>console.log("title")}> 
