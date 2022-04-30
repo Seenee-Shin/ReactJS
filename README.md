@@ -1,8 +1,8 @@
 # 📚NomadCoder ReactJS 
 ### list
-[1. What is the difference between Reactjs and vanliaJS!](#what-is-the-difference-between-reactjs-and-vanliajs!) <br>
-[2. How to use JSX?](#how-to-use-jsx?) <br>
-[3. Let's make a counter! (React.useState())](#let's-make-a-counter!-react.usestate)
+[1. What is the difference between Reactjs and vanliaJS!](#what-is-the-difference-between-reactjs-and-vanliajs) <br>
+[2. How to use JSX?](#how-to-use-jsx) <br>
+[3. Let's make a counter! (React.useState())](#lets-make-a-counter-reactusestate)
 
 ## Day1. 2021.04.28 
 
