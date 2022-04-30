@@ -1,8 +1,12 @@
 # 📚NomadCoder ReactJS 
+### list
+[1. What is the difference between Reactjs and vanliaJS!](#day1-20210428) <br>
+[2. How to use JSX?](#day2-20210429) <br>
+[3. Let's make a counter! (React.useState())](#day3-20210430)
 
-## Day1. 2021.04.28
+## Day1. 2021.04.28 
 
-### What is the difference between Reactjs and vanliaJS!
+### What is the difference between ReactJS and vanliaJS!
 - 자바스크립트는 html 생성 후 eventlistner를 만들어 줍니다. 
 하지만 ReactJS의 경우 html을 생성할 필요 없이 변수를 만들어 바로 eventListner를 추가해 줄 수 있습니다. 
 #### React.JS
