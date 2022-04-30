@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title></title>
+</head>
+<body>
+  <!-- 리액트는 html을 직접 작성하지 않아요! -->
+  <div id="root"></div>
+</body>
+  <script crossorigin src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+  <!-- JSX : 자바스크립틑 확장 언어 -->  
+  <script  src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script></script>
+  
+  
+  <script type="text/babel"> //jsx를 이해시키기위해 type적어주기
+    const root = document.querySelector("#root");
+    // react가 좋은이유
+    // vanilaJS에서 만든 카운트가 변경될때, span, text등 모두 바뀜 (모두 리랜더)
+    // reactJS의 경우 '숫자'만 변경(부분적으로 리랜더) ---->중요! (리액트는 바뀐부분만 수정해 줍니다.)
+    // 이것이 react의 interavtive! 
+    
+    //========================================================
+    //State 작성하기 
+    ///////not good way///////////
+    //don't remember this
+    let count = 0;
+    function countUp(){
+      count++;
+      reRender();
+    }
+    
+    //render Function
+    function reRender(){
+      //UI 업데이트를 위해 다시 랜더해준다
+      ReactDOM.render(<Container/>,root);
+    }
+    //============================================================
+
+    /////////// perfect way///////////////
+    //위 방법은 매번 rerender함수를 호출해야 하기때문에 번거롭습니다. 
+    //부분적으로 리랜더링 해봅시다! 
+    function Container() {
+      // arrays 에서 요소 꺼내기 const [각인덱스의 값에 붙일 변수] = 배열 생성;
+      const [counter, setCounter] = React.useState(0); 
+      //React.useState(0): array를 반환해 주는데 인덱스0:data값, 인덱스: 적용할 함수
+
+      //왜 modifier가 필요한가요?
+      //하나하나 리랜더하지않아도 modifier에 값을 지정해주면 자동으로 업데이트 해줍니다! 
+      const onClick = () =>{
+        setCounter(counter+1);
+      };
+
+      return(
+        <div> 
+          <h3>count : {counter}</h3>
+          <button onClick={onClick}>Click me!</button>
+          </div>
+      )
+    };
+        
+    ReactDOM.render(<Container/>,root);
+    //reRender();
+
+  </script>
+</html>
