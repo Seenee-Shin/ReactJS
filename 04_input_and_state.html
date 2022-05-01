@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title></title>
+</head>
+<body>
+  <!-- 리액트는 html을 직접 작성하지 않아요! -->
+  <div id="root"></div>
+</body>
+  <script crossorigin src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+  <!-- JSX : 자바스크립틑 확장 언어 -->  
+  <script  src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script></script>
+  
+  
+  <script type="text/babel"> //jsx를 이해시키기위해 type적어주기
+
+  // 시간 변환기 만들기
+    function App() {
+      //html의 for와 class는 JSX의 문법에서 오류가 발생하기 때문에 htmlFor, className으로 작성합니다. 
+      //input = uncontrolled value
+      const [minutes, setMinutes] = React.useState();
+      //input값 가져오기= event.target.value
+      const onChange = (event) => {
+        setMinutes(event.target.value);
+      };
+
+      return(
+        <div> 
+          <h1 className="">Super Converter</h1>
+          <label htmlFor="minutes"> Minutes : </label>
+          <input 
+            value={minutes} 
+            type="number"
+            id="minutes"
+            placeholder="Minutes"
+            onChange={onChange}
+            />
+          <h4>want to convert {minutes}?</h4>
+          <label for="hours"> Hours : </label>
+          <input type="number" id="hours" placeholder="Hours"/>
+        </div>
+      );
+    }
+        
+    const root = document.querySelector("#root");
+    ReactDOM.render(<App/>,root);
+    //reRender();
+
+  </script>
+</html>

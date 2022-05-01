@@ -27,17 +27,17 @@
     //State 작성하기 
     ///////not good way///////////
     //don't remember this
-    let count = 0;
-    function countUp(){
-      count++;
-      reRender();
-    }
+    // let count = 0;
+    // function countUp(){
+    //   count++;
+    //   reRender();
+    // }
     
-    //render Function
-    function reRender(){
-      //UI 업데이트를 위해 다시 랜더해준다
-      ReactDOM.render(<Container/>,root);
-    }
+    // //render Function
+    // function reRender(){
+    //   //UI 업데이트를 위해 다시 랜더해준다
+    //   ReactDOM.render(<Container/>,root);
+    // }
     //============================================================
 
     /////////// perfect way///////////////
@@ -51,7 +51,11 @@
       //왜 modifier가 필요한가요?
       //하나하나 리랜더하지않아도 modifier에 값을 지정해주면 자동으로 업데이트 해줍니다! 
       const onClick = () =>{
-        setCounter(counter+1);
+        //setCounter(counter+1); 
+        
+        //setCounter에 함수로 지정할 수 도 있다.
+        // current : 현재 counter에 들어있는 값 (current의 사용으로 오류를 방지할 수 있다.)
+        setCounter((current) => current+1 )
       };
 
       return(
