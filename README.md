@@ -1,10 +1,11 @@
 # 📚NomadCoder ReactJS 
 ### list
-[1. What is the difference between Reactjs and vanliaJS!](#day1-20210428) <br>
-[2. How to use JSX?](#day2-20210429) <br>
-[3. Let's make a counter! (React.useState())](#day3-20210430)
+[1. What is the difference between Reactjs and vanliaJS!](#day1-20220428) <br>
+[2. How to use JSX?](#day2-20220429) <br>
+[3. Let's make a counter! (React.useState())](#day3-20220430) <br>
+[4. ractice useState()](#day4-20220501) <br>
 
-## Day1. 2021.04.28 
+## Day1. 2022.04.28 
 
 ### What is the difference between ReactJS and vanliaJS!
 - 자바스크립트는 html 생성 후 eventlistner를 만들어 줍니다. 
@@ -43,7 +44,7 @@ btn.addEventListener("click", handleClick)
 <br>
 <br>
 
-## Day2. 2021.04.29
+## Day2. 2022.04.29
 ### How to use JSX?
 - 그거아시나요? 어제 실무자들은 어제 배웠던 방법으로 요소를 생성하지 않습니다!
 - JSX를 통해 개발자처럼 요소를 생성해봅시다. JSX가 뭐냐구요? 
@@ -90,7 +91,7 @@ JSX를 사용하여 컴포넌트를 만들어 주면 html안에 컴포넌트를 
 <br>
 <br>
 
-## Day3. 2021.04.30
+## Day3. 2022.04.30
 ### Let's make a counter! (React.useState())
 오늘을 카운터를 만들어봅니다. 
 어제는 JSX를 이용해 함수를 적용하는 것을 배웟습니다. 오늘은 함수를 적용하고 실제로 UI값도 실시간으로 바꿔봅시다.
@@ -154,3 +155,70 @@ const index1 = arr[1];
 이렇게 
 React.useState(); 를 이용하면 render 함수를 불러올 필요 없이 알아서 수정된 값을 리턴값에 반환 시켜 랜더해줍니다. 
 
+<br>
+<br>
+
+## Day4. 2022.05.01
+### practice useState()
+업로드가 늦었지만! 어제(?) 배운 useState를 연습하기 위해 분을 시간단위로 바꾸어 주는 간단한 프로그램을 만들어봅시다! 
+
+#### ⏰시간 변환기 만들기 
+먼저, input을 만들어 주어야겠죠? 그런데 잠깐만요!!!<br>
+혹시 `input`에 `label` 붙여 사용하기 위해 id를 주고 `for = "id값"`를 쓰지 않았나요? <br>
+<br>
+❌❌ 아..안돼!!! ❌❌ <br>
+<br>
+
+📌 JSX 문법에서는 `javascript`가 우선이 됩니다. html태그의 `for`요소를 쓰고싶다면 이렇게 써주세요!
+```jsx
+<label htmlFor="minutes"> Minutes : </label>
+
+//자매품 class도 있어요!
+<h1 className="sub_title">Super Converter</h1>
+```
+이렇게 `input`태그를 만들어 준 후 useState()도 만들어 주어야겠죠?
+
+```jsx
+const [minutes, setMinutes] = React.useState();
+```
+
+짠! 
+
+어제 배운것과 다른것이 있다면 이번에는 input의 값을 받아와야 한다는 것!
+만들어 놓았던 input 태그에``value={minutes}``를 추가하여 값을 받아와줍니다. 
+<br>
+<br>
+이제 받아온 값으로 함수를 만들어 주어야 하겠지요오? 함수를 만들고 입력한 숫자를 화면에 나타내기 위해 setMinutes까지 설정해 보려고 합니다!<br>
+안녕? 나는 함수야 내가 나타볼게<br>
+하나 둘 셋 <br>
+얍<br>
+
+```jxs
+    function App() {
+
+      const [minutes, setMinutes] = React.useState();
+      //input값 가져오기= event.target.value
+      const onChange = (event) => {
+        setMinutes(event.target.value);
+      };
+
+      return(
+        <div> 
+          <h1 className="sub_title">Super Converter</h1>
+          <label htmlFor="minutes"> Minutes : </label>
+          <input 
+            value={minutes} 
+            type="number"
+            id="minutes"
+            placeholder="Minutes"
+            onChange={onChange}
+            />
+          <h4>want to convert {minutes}?</h4>
+          <label for="hours"> Hours : </label>
+          <input type="number" id="hours" placeholder="Hours"/>
+        </div>
+      );
+    }
+```
+짠! <br>
+이렇게 분단위 시간을 불러오는 코드가 완성이 되었습니다!!!
