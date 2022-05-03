@@ -3,7 +3,7 @@
 [1. What is the difference between Reactjs and vanliaJS!](#day1-20220428) <br>
 [2. How to use JSX?](#day2-20220429) <br>
 [3. Let's make a counter! (React.useState())](#day3-20220430) <br>
-[4. ractice useState()](#day4-20220501) <br>
+[4. Practice useState()](#day4-20220501) <br>
 
 ## Day1. 2022.04.28 
 
@@ -159,7 +159,7 @@ React.useState(); 를 이용하면 render 함수를 불러올 필요 없이 알�
 <br>
 
 ## Day4. 2022.05.01
-### practice useState()
+### Practice useState()
 업로드가 늦었지만! 어제(?) 배운 useState를 연습하기 위해 분을 시간단위로 바꾸어 주는 간단한 프로그램을 만들어봅시다! 
 
 #### ⏰시간 변환기 만들기 
@@ -193,7 +193,7 @@ const [minutes, setMinutes] = React.useState();
 하나 둘 셋 <br>
 얍<br>
 
-```jxs
+```jsx
     function App() {
 
       const [minutes, setMinutes] = React.useState();
