@@ -4,7 +4,7 @@
 [2. How to use JSX?](#day2-20220429) <br>
 [3. Let's make a counter! (React.useState())](#day3-20220430) <br>
 [4. Practice useState()](#day4-20220501) <br>
-[5. Practice useState()](#day5-20220511) <br>
+[5. Practice useState() part.2 - flipped, Reset](#day5-20220511) <br>
 
 ## Day1. 2022.04.28 
 
