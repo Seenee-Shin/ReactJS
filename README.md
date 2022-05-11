@@ -4,6 +4,7 @@
 [2. How to use JSX?](#day2-20220429) <br>
 [3. Let's make a counter! (React.useState())](#day3-20220430) <br>
 [4. Practice useState()](#day4-20220501) <br>
+[5. Practice useState()](#day5-20220511) <br>
 
 ## Day1. 2022.04.28 
 
@@ -194,31 +195,162 @@ const [minutes, setMinutes] = React.useState();
 얍<br>
 
 ```jsx
-    function App() {
+  function App() {
 
-      const [minutes, setMinutes] = React.useState();
-      //input값 가져오기= event.target.value
-      const onChange = (event) => {
-        setMinutes(event.target.value);
-      };
+    const [minutes, setMinutes] = React.useState();
+    //input값 가져오기= event.target.value
+    const onChange = (event) => {
+      setMinutes(event.target.value);
+    };
 
-      return(
-        <div> 
-          <h1 className="sub_title">Super Converter</h1>
-          <label htmlFor="minutes"> Minutes : </label>
-          <input 
-            value={minutes} 
-            type="number"
-            id="minutes"
-            placeholder="Minutes"
-            onChange={onChange}
-            />
-          <h4>want to convert {minutes}?</h4>
-          <label for="hours"> Hours : </label>
-          <input type="number" id="hours" placeholder="Hours"/>
-        </div>
-      );
-    }
+    return(
+      <div> 
+        <h1 className="sub_title">Super Converter</h1>
+        <label htmlFor="minutes"> Minutes : </label>
+        <input 
+          value={minutes} 
+          type="number"
+          id="minutes"
+          placeholder="Minutes"
+          onChange={onChange}
+          />
+        <h4>want to convert {minutes}?</h4>
+        <label for="hours"> Hours : </label>
+        <input type="number" id="hours" placeholder="Hours"/>
+      </div>
+    );
+  }
 ```
 짠! <br>
 이렇게 분단위 시간을 불러오는 코드가 완성이 되었습니다!!!
+
+<br/>
+
+## Day5. 2022.05.11
+### Practice useState() part 2.
+
+면점과 자격증 시험으로 저번주는 강의를 듣지못했습니다. <br/>
+오늘부터 다시 시작! <br/>
+
+저번 내용에 이어서 분-시감 변환기를 계속해서 만들어 보도록해봅시다! 
+
+#### ⏰시간 변환기 만들기 part.2
+본격적으로 변환하기 전에! 
+만약 input 태그의 함수 onchange를 작성하지 않으면 어떻게 될까요? input value로 minutes를 만들어 주었으니 똑똑한 react는 알아서 바꾸어 주지 않을까요 ? <br/>
+
+❌❌컴퓨터는 생각보다 멍청합니다 ❌❌
+```jsx
+React.useState(0)
+```
+로 설정한 뒤 onchange를 지우고 실행하게 되면 아무것도 쓸수 없게 됩니다! 왜냐! <br/>
+ input의 상태가 지금 기본값 0으로 지정 되어있기때문에!!  <br/>
+
+그렇기 때문에 꼭! value와 함수가 모두 필요합니다. <br/>
+<br/>
+<br/>
+
+#### 자, 이제 변환한 시간을 만들어봅시다 
+사실 여기까지 했으면 아주 분단위를 시간으로 만드는 것은 아주 간단합니다.
+입력 받은 vlaue값을 60분으로 나누어 주면 되겠죠? 
+
+60분 == 1시간이니까요! 
+
+입력받은 minutes값을 `input id="hours"`에도 value로 넣어줍니다. 
+그리고 minutes값을 60으로 나누어 주면 끝! 
+
+```jsx
+  <article>
+    <label for="hours"> Hours : </label>
+    <input 
+      value={Math.floor(minutes/60)}  
+      id="hours" 
+      type="number"
+      placeholder="Hours"/>
+  </article>
+```
+저는 소수점이 싫기 때문에 floor를 이용해 정수로 만들어 주었습니다. <br/>
+
+
+#### Reset button 만들기 
+자 입력하여 값을 구했다면 다음 입력 값을 위해 지워주어야 하겠죠? <br/>
+
+`reset` 버튼을 만들어봅시다 reset버튼의html은 가볍게 만들수 잇을 거라고 생각되니 생략 합니다. <br/>
+
+reset 버튼이 동작하기 위해서는 함수가 필요하겠죠?<br/> 
+`버튼을 '클릭'했을때` input의 value를 reset시켜주어야합니다. 이것을 코드로 변환하면 
+```jsx
+<button onClick={reset}> Reset</button>
+```
+이렇게 변환됩니다. 그럼 `reset`함수를 만들어 주어야겠죠?
+
+reset함수에서 0으로 만들어 주어야 하는 값은 `minutes`값입니다. `minutes`값을 셋팅해주는 것은 ??? 
+
+`setMinutes`이죠! 
+이것을 코드로 표현한다면 
+```jsx
+  const reset = (event) =>{
+    setMinutes(0);
+```
+이런식으로 표현할 수 있습니다! 실행해보면 아주 잘 작동됩니다! <br/> 
+<br/> 
+
+#### Flip button 만들기
+`저는 시간을 분으로 변환도 하고 싶어요! ` <br/>
+그래서 flip버튼으로 시간을 분으로 변환할 수 있게 해볼거에요. 우선 reset버튼과 같은형태로 `button`을 만들어줍니다. 
+그 다음 두개의 `input`에  `disabled` 속성을 추가해 줍니다.
+```jsx
+<button onClick={onFlip}> Flipped</button>
+```
+함수도 만들어주어야합니다. <br/>
+<br/>
+그전에!!! <br/>
+<br/>
+
+지금 사용되는 `useState()`는 minutes을 이용한 것 하나 뿐이니 함수를 만들기 전에 `useState()`를 하나 더 생성해 줍니다.
+
+```jsx
+ const [flipped, setFlipped] = React.useState(false);
+// 디폴트 값은 false로 지정해줍니다.
+```
+그리고 이것을 함수에 적용해주어야합니다. 
+flip를 누르면 true로, 또한번 누르면 false로 바뀌면서 flip기능이 적용되어야겠죠?
+
+그렇게 해주기 위해 
+
+```jsx
+const onFlip=() => setFlipped(!fliped)
+```
+라고 설정해 주는게 맞을거라고 생각하면 안돼안돼~ <br/>
+
+변수의 값을 그대로 쓰게 되면 좋지않다고 배웟었죠? `현재 State 값`으로 그 값을 지정해줍니다. 
+#### 👍 perfect way! 
+```jsx
+const onFlip=() => setFlipped((current) => !current)
+```
+
+그 후 `disabled`속성에 `disabled={flipped}` `disabled={!flipped}`로 작성해주면?
+마치 토글처럼 누를때 마다 hours, minutes에 disable가 활성화되고 비활성화 됩니다. <br/>
+<br/>
+
+#### hours input에 입력하기
+
+하지만 여기서 한가지 문제가 발생합니다.
+hours의 input이 활성화되어도 입력할 수가 없숴..!!!
+
+이유는 2가지입니다. 
+1. 아까 설명드렸던 value값만 있고 함수가 지정되어있지않다는것! 
+2. value 값에 분을 시간으로 바꾸는 수식이 들어가 있다는것! 
+<br/>
+이 문제를 해결해 봅시다 
+
+우선 onChang으로 값이 변환 될때 실행 될 함수를 불러옵니다. 
+<br/>
+
+그 후 input의 value 값을 변경해 주어야합니다. 
+`flipped` 이 true 일때 minutes을 입력 받고, 아닐때는 수식으로 시간을 계산해 줍니다.
+if문으로 표현해 줄 수 있겠죠?
+
+```jsx
+  value={ flipped? minutes : Math.floor(minutes/60) }  
+```
+ 이런식으로 작성해주면 정상적으로 작동되는것을 확인 할 수 있습니다! 

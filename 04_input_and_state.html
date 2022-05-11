@@ -22,27 +22,50 @@
     function App() {
       //html의 for와 class는 JSX의 문법에서 오류가 발생하기 때문에 htmlFor, className으로 작성합니다. 
       //input = uncontrolled value
-      const [minutes, setMinutes] = React.useState();
+      const [amount, setAmount] = React.useState();
+      const [flipped, setFlipped] = React.useState(false);
       //input값 가져오기= event.target.value
       const onChange = (event) => {
-        setMinutes(event.target.value);
+        setAmount(event.target.value);
       };
 
+      const reset = () => setAmount(0);
+      const onFlip=() => setFlipped((current) => !current)
+
       return(
-        <div> 
-          <h1 className="">Super Converter</h1>
-          <label htmlFor="minutes"> Minutes : </label>
-          <input 
-            value={minutes} 
-            type="number"
-            id="minutes"
-            placeholder="Minutes"
-            onChange={onChange}
-            />
-          <h4>want to convert {minutes}?</h4>
-          <label for="hours"> Hours : </label>
-          <input type="number" id="hours" placeholder="Hours"/>
-        </div>
+        <section> 
+          <h1 className="sub_title">Super Converter</h1>
+          <article>
+            <label htmlFor="minutes"> Minutes : </label>
+            <input 
+              value={flipped? Math.floor(amount*60): amount} 
+              type="number"
+              id="minutes"
+              placeholder="Minutes"
+              onChange={onChange}
+              disabled={flipped}
+              />
+              </article>
+              
+              <h4>want to convert {amount}?</h4>
+              <article>
+                <label htmlFor="hours"> Hours : </label>
+                <input 
+                value={flipped? amount :Math.floor(amount/60) }  
+                id="hours" 
+                type="number"
+                placeholder="Hours"
+                disabled={!flipped}
+                onChange={onChange}
+              />
+          </article>
+
+          <article>
+            <button onClick={reset}> Reset</button>
+            <button onClick={onFlip}> Flipped</button>
+          </article>
+
+        </section>
       );
     }
         
