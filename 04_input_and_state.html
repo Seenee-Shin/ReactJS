@@ -30,7 +30,11 @@
       };
 
       const reset = () => setAmount(0);
-      const onFlip=() => setFlipped((current) => !current)
+
+      const onFlip=() => {
+        reset()
+        setFlipped((current) => !current)
+      }
 
       return(
         <section> 
