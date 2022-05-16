@@ -19,7 +19,7 @@
   <script type="text/babel"> //jsx를 이해시키기위해 type적어주기
 
   // 시간 변환기 만들기
-    function App() {
+    function MinutesToHours() {
       //html의 for와 class는 JSX의 문법에서 오류가 발생하기 때문에 htmlFor, className으로 작성합니다. 
       //input = uncontrolled value
       const [amount, setAmount] = React.useState();
@@ -66,13 +66,77 @@
 
           <article>
             <button onClick={reset}> Reset</button>
-            <button onClick={onFlip}> Flipped</button>
+            <button onClick={onFlip}> {flipped? "Turn back": "Invert"} </button>
           </article>
 
         </section>
       );
     }
-        
+    function KilometerToMiles(){
+      const [distance, setDistance] = React.useState(0);
+      
+      return(
+        <section> 
+          <h1 className="sub_title">Distance Converter</h1>
+          <article>
+            <label htmlFor="minutes"> Km : </label>
+            <input 
+              value={flipped? Math.floor(distance*60): distance} 
+              type="number"
+              id="minutes"
+              placeholder="Minutes"
+              onChange={onChange}
+              disabled={flipped}
+              />
+              </article>
+              
+              <h4>want to convert {distance}?</h4>
+              <article>
+                <label htmlFor="hours"> Miles : </label>
+                <input 
+                value={flipped? distance :Math.floor(distance/60) }  
+                id="hours" 
+                type="number"
+                placeholder="Hours"
+                disabled={!flipped}
+                onChange={onChange}
+              />
+          </article>
+
+          <article>
+            <button onClick={reset}> Reset</button>
+            <button onClick={onFlip}> {flipped? "Turn back": "Invert"} </button>
+          </article>
+
+        </section>
+      );
+    }
+    function App() {
+      //divide and conquer
+      //메뉴로 변환기 고르기 
+      //jsx에서 js쓰려면?? {}안에 코드를 작성해 준다 
+      //index 
+      const [index, setIndex] = React.useState("X");
+
+      const onSelect = (event) =>{
+        setIndex(event.target.value);
+      }
+
+      return(
+        <section> 
+          <h1 className="sub_title">Super Converter</h1>
+          <select value={index} onChange={onSelect}>
+            <option value="X">Select Converter</option>
+            <option value="0">Minutes to Hours</option>  
+            <option value="1">Km to Miles</option>  
+          </select>
+          <br/>
+          {index ==="X"? "Plese select the converter.":null}
+          {index ==="0"? <MinutesToHours/>:null}
+          {index ==="1"? <KilometerToMiles/>:null}
+        </section>
+      );
+    }
     const root = document.querySelector("#root");
     ReactDOM.render(<App/>,root);
     //reRender();
