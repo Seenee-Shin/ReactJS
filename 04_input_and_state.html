@@ -72,44 +72,61 @@
         </section>
       );
     }
+
     function KilometerToMiles(){
       const [distance, setDistance] = React.useState(0);
-      
+      const [invert, setInverted] = React.useState(false);
+
+      const changeDistance =()=>{
+        setDistance(event.target.value);
+      }
+
+      const reset = ()=> setDistance(0);
+
+      const inverted =()=>{
+        reset();
+        setInverted((current) => !current)
+      }
+
       return(
         <section> 
           <h1 className="sub_title">Distance Converter</h1>
           <article>
-            <label htmlFor="minutes"> Km : </label>
+            <label htmlFor="miles"> Mile : </label>
             <input 
-              value={flipped? Math.floor(distance*60): distance} 
+              value={invert? (distance/1.60934): distance} 
               type="number"
-              id="minutes"
-              placeholder="Minutes"
-              onChange={onChange}
-              disabled={flipped}
+              id="miles"
+              placeholder="Mile"
+              onChange={changeDistance}
+              disabled={invert}
               />
               </article>
               
               <h4>want to convert {distance}?</h4>
               <article>
-                <label htmlFor="hours"> Miles : </label>
+                <label htmlFor="km"> Km : </label>
                 <input 
-                value={flipped? distance :Math.floor(distance/60) }  
-                id="hours" 
+                value={invert? distance : (distance*1.60934) }  
+                id="km" 
                 type="number"
-                placeholder="Hours"
-                disabled={!flipped}
-                onChange={onChange}
+                placeholder="km"
+                disabled={!invert}
+                onChange={changeDistance}
               />
           </article>
 
           <article>
             <button onClick={reset}> Reset</button>
-            <button onClick={onFlip}> {flipped? "Turn back": "Invert"} </button>
+            <button onClick={inverted}> {invert? "Turn back": "Invert"} </button>
           </article>
 
         </section>
       );
+    }
+    
+    function gTokg(){
+
     }
     function App() {
       //divide and conquer
@@ -129,6 +146,7 @@
             <option value="X">Select Converter</option>
             <option value="0">Minutes to Hours</option>  
             <option value="1">Km to Miles</option>  
+            <option value="2">gram to kliogram</option>  
           </select>
           <br/>
           {index ==="X"? "Plese select the converter.":null}
